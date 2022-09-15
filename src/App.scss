@@ -1,0 +1,9 @@
+@use './styles/variables.scss';
+@use './pages/home/styles/background.scss';
+@use './pages/home/styles/heading.scss';
+@use './pages/home/styles/list.scss';
+@use './pages/home/styles/navBar.scss';
+
+.app {
+  background: var(--black);
+}
