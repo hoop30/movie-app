@@ -1,0 +1,222 @@
+:root {
+  --black: #000;
+  --white: #f9f9f9;
+  --grey: #333333;
+  --yellow: #F2C94C;
+}
+
+.home-heading {
+  position: relative;
+  height: 598px;
+}
+.home-heading > .heading-link {
+  position: absolute;
+  z-index: 10;
+  bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+}
+.home-heading > .heading-link > a {
+  color: var(--white);
+  font-size: 1em;
+  font-weight: 600;
+}
+.home-heading > .heading-link > .btn-background-film {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+.home-heading > .heading-link > .btn-background-film > * {
+  width: 155px;
+  height: 48px;
+  border-radius: 8px;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-weight: 500;
+  font-size: 1em;
+  font-weight: 600;
+}
+.home-heading > .heading-link > .btn-background-film > *:first-child {
+  background: var(--grey);
+  color: var(--white);
+}
+.home-heading > .heading-link > .btn-background-film > *:last-child {
+  background: var(--yellow);
+  color: var(--grey);
+}
+
+.swiper-pagination > .swiper-pagination-bullet {
+  background: var(--white);
+  opacity: 1;
+}
+.swiper-pagination > .swiper-pagination-bullet-active {
+  background: var(--yellow);
+  opacity: 1;
+}
+
+h2 {
+  color: var(--white);
+  padding-bottom: 16px;
+}
+
+html,
+.list {
+  position: relative;
+  height: 100%;
+}
+
+.list {
+  color: #000;
+  padding-bottom: 32px;
+}
+.list > .swiper {
+  width: 100%;
+  height: 100%;
+}
+.list > .swiper > .swiper-wrapper > .swiper-slide a {
+  text-align: center;
+  /* Center slide text vertically */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 16px;
+}
+.list > .swiper > .swiper-wrapper > .swiper-slide img {
+  display: block;
+  width: 120px;
+  height: 160px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 8px;
+}
+.list > .swiper > .swiper-wrapper > .swiper-slide p {
+  width: 120px;
+  height: 17px;
+  color: var(--white);
+  font-size: 14px;
+  font-weight: 600;
+  text-align: start;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.home-heading .swiper {
+  width: 100%;
+  height: auto;
+}
+.home-heading .swiper-slide a {
+  text-align: center;
+  /* Center slide text vertically */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 16px;
+}
+.home-heading .swiper-slide img {
+  display: block;
+  width: 100%;
+  height: auto;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -webkit-mask-image: linear-gradient(black 0%, black 50%, transparent);
+          mask-image: linear-gradient(black 0%, black 50%, transparent);
+}
+
+.contact {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  color: var(--white);
+  padding: 0 30px;
+  gap: 16px;
+}
+.contact > h2 {
+  text-align: start;
+  padding: 0;
+}
+.contact > .contact-img {
+  background-image: url(../../../assets/img/code-640.jpg);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  width: 325px;
+  height: 165px;
+}
+.contact > .links {
+  width: 100%;
+  height: 48px;
+  background: var(--yellow);
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+.contact > .links > .btn-Contact {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: var(--yellow);
+  transition: 0.3s ease-out;
+}
+.contact > .links > .btn-Contact.hide {
+  opacity: 0;
+  width: 0%;
+}
+.contact > .links > .logo {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  height: 90%;
+  background: var(--yellow);
+}
+.contact > .links > .logo > .separation {
+  width: 2px;
+  height: 100%;
+  background: var(--grey);
+}
+.contact > .links > .logo > a {
+  width: 33%;
+  margin: 0 4px;
+  text-align: center;
+}
+.contact > .links > .logo > a > img {
+  width: auto;
+  height: 100%;
+}
+
+main {
+  padding: 24px 5px;
+}
+
+*, body {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: none;
+  list-style: none;
+  text-decoration: none;
+  font-family: "Nunito", sans-serif;
+}
+
+#root {
+  display: flex;
+  justify-content: center;
+  background: var(--black);
+}
+
+.app {
+  background: var(--black);
+  width: 399px;
+}/*# sourceMappingURL=App.css.map */

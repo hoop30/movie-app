@@ -1,0 +1,9 @@
+@use './heading';
+@use './list';
+@use './navBar';
+@use './headingList';
+@use './contact';
+
+main {
+    padding: 24px 5px;
+}
