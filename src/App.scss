@@ -11,6 +11,13 @@
   font-family: 'Nunito', sans-serif;
 }
 
+#root {
+  display: flex;
+  justify-content: center;
+  background: var(--black);
+}
+
 .app {
   background: var(--black);
+  width: 399px;
 }
