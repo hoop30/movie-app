@@ -19,7 +19,7 @@ export function HeadingList() {
         "thor love and thunder",
         "WandaVision"
     ]
-    console.log(list);
+    
     useEffect(() => {
         FetchTable(setList, films);
     }, []);
