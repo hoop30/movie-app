@@ -1,19 +1,28 @@
 import React, { useState, useEffect } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-import { FetchList } from '../../../libs/Omdb'
+import { FetchTable } from '../../../libs/Omdb'
 import { Link } from 'react-router-dom';
 // Import Swiper styles
 import "swiper/css";
+import "swiper/css/pagination";
+import { Pagination } from "swiper";
 
-export function List({ name }) {
+export function HeadingList() {
 
-    const [list, setList] = useState()
+    const [list, setList] = useState([])
     const slides = []
-
+    const films = [
+        "stranger things",
+        "rogue one",
+        "pirates of the caribbean",
+        "thor love and thunder",
+        "WandaVision"
+    ]
+    console.log(list);
     useEffect(() => {
-        FetchList(setList, name);
-    }, [name]);
+        FetchTable(setList, films);
+    }, []);
 
     if (list !== undefined) {
         for (let i = 0; i < list.length; i++) {
@@ -24,8 +33,7 @@ export function List({ name }) {
             const newSlide = (
                 <SwiperSlide key={i}>
                     <Link to='/'>
-                        <img src={img} alt={title}  width='120px' height='160px'/>
-                        <p>{title}</p>
+                        <img src={img} alt={title} />
                     </Link>
                 </SwiperSlide>
             )
@@ -33,13 +41,13 @@ export function List({ name }) {
             slides.push(newSlide)
         }
     }
-
+  
     return (
-        <div className="list">
-            <h2>{name}</h2>
-            <Swiper slidesPerView={3} spaceBetween={16} className="mySwiper">
+            <Swiper 
+                pagination={true} 
+                modules={[Pagination]}
+                className="Heading-Swiper">
                 {slides}
             </Swiper>
-        </div>
     )
 }

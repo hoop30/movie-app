@@ -1,8 +1,15 @@
 @use './styles/variables.scss';
-@use './pages/home/styles/background.scss';
-@use './pages/home/styles/heading.scss';
-@use './pages/home/styles/list.scss';
-@use './pages/home/styles/navBar.scss';
+@use './pages/home/styles/home.scss';
+
+*, body {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: none;
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Nunito', sans-serif;
+}
 
 .app {
   background: var(--black);
