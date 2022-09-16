@@ -1,6 +1,6 @@
 export const FetchList = async (setList, search) => {
 
-    const url = `http://www.omdbapi.com/?apikey=865a7117&s=${search}`
+    const url = `https://www.omdbapi.com/?apikey=865a7117&s=${search}`
 
     const response = await fetch(url)
 
@@ -10,11 +10,11 @@ export const FetchList = async (setList, search) => {
 
 export const FetchTable = async (setList, searchTable) => {
 
-    const url0 = `http://www.omdbapi.com/?apikey=865a7117&t=${searchTable[0]}`
-    const url1 = `http://www.omdbapi.com/?apikey=865a7117&t=${searchTable[1]}`
-    const url2 = `http://www.omdbapi.com/?apikey=865a7117&t=${searchTable[2]}`
-    const url3 = `http://www.omdbapi.com/?apikey=865a7117&t=${searchTable[3]}`
-    const url4 = `http://www.omdbapi.com/?apikey=865a7117&t=${searchTable[4]}&y=2021`
+    const url0 = `https://www.omdbapi.com/?apikey=865a7117&t=${searchTable[0]}`
+    const url1 = `https://www.omdbapi.com/?apikey=865a7117&t=${searchTable[1]}`
+    const url2 = `https://www.omdbapi.com/?apikey=865a7117&t=${searchTable[2]}`
+    const url3 = `https://www.omdbapi.com/?apikey=865a7117&t=${searchTable[3]}`
+    const url4 = `https://www.omdbapi.com/?apikey=865a7117&t=${searchTable[4]}&y=2021`
 
     const response0 = await fetch(url0)
     const response1 = await fetch(url1)
