@@ -29,10 +29,11 @@ export function HeadingList() {
             
             const title = list[i].Title
             const img = list[i].Poster
+            const link = `/movie?m=${title}`
 
             const newSlide = (
                 <SwiperSlide key={i}>
-                    <Link to='/'>
+                    <Link to={link}>
                         <img src={img} alt={title} />
                     </Link>
                 </SwiperSlide>

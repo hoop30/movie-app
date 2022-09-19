@@ -20,10 +20,11 @@ export function List({ name }) {
             
             const title = list[i].Title
             const img = list[i].Poster
+            const link = `/movie?m=${title}`
 
             const newSlide = (
                 <SwiperSlide key={i}>
-                    <Link to='/'>
+                    <Link to={link}>
                         <img src={img} alt={title}  width='120px' height='160px'/>
                         <p>{title}</p>
                     </Link>

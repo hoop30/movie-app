@@ -8,6 +8,16 @@ export const FetchList = async (setList, search) => {
     setList(film.Search)
 }
 
+export const FetchMovie = async (setMovie, search) => {
+    
+    const url = `https://www.omdbapi.com/?apikey=865a7117&t=${search}`
+
+    const response = await fetch(url)
+
+    const film = await response.json()
+    setMovie(film)
+}
+
 export const FetchTable = async (setList, searchTable) => {
 
     const url0 = `https://www.omdbapi.com/?apikey=865a7117&t=${searchTable[0]}`

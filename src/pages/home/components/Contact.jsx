@@ -21,7 +21,7 @@ export function Contact() {
             <h2>GRANIER Kévin</h2>
             <p>Ce projet a été realiser avec React et l'api Omdb. si ce projet vous a plus n'etister plus contacter moi!<BiDownvote /></p>
             
-            <div className='links' href="https://www.kevin-granier.fr/#contact" target="_blank" onMouseLeave={hide}>
+            <div className='links' href="https://www.kevin-granier.fr/" target="_blank" onMouseLeave={hide}>
                 <button className='btn-Contact' onClick={show} >Contact</button>
                 <div className='logo'>
                     <a href="https://www.kevin-granier.fr/#contact" target="_blank">

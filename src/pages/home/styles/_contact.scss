@@ -38,11 +38,17 @@
             position: absolute;
             background: var(--yellow);
             transition: 0.3s ease-out;
+            font-size: 1.1em;
+            transition: 0.2s ease-out;
+
+            &:hover {
+                color: var(--white);
+                box-shadow: inset 4px 4px 10px rgba(0, 0, 0, 0.2);
+            }
 
             &.hide {
                 opacity: 0;
                 width: 0%;
-                //height: 0%;
             }
         }
 

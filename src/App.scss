@@ -1,5 +1,7 @@
 @use './styles/variables';
+@use './styles/navMenu';
 @use './pages/home/styles/home';
+@use './pages/movie/styles/movie';
 
 *, body {
   box-sizing: border-box;
