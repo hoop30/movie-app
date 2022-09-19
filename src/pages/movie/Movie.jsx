@@ -13,17 +13,30 @@ export function Movie() {
 
     useEffect(() => {
         FetchMovie(setMovie, loc);
-    }, []);
+    }, [loc]);
 
     if (movie === null) {
         return <div className='movie-loading'></div>
     } else {
         const image = movie.Poster
-        const pg = movie.Rated
-        const year = movie.Year
+        let pg = null
+        let year = null
         const runtime = movie.Runtime
         const title = movie.Title
-        const desc = movie.Plot
+        let desc = null
+
+        //console.log(pg.props.children);
+        if (movie.Rated !== "N/A") {
+            pg = <p>{movie.Rated}</p>
+        }
+        if (movie.Year !== "N/A") {
+            year = <p>{movie.Year}</p>
+        }
+        if (movie.Plot !== "N/A") {
+            desc = movie.Plot
+        }
+
+        console.log(movie);
 
         return (
             <div className="movie-layout">
@@ -35,8 +48,8 @@ export function Movie() {
                     </span>
                     <h2>{title}</h2>
                     <div className='micro-info'>
-                        <p>{pg}</p>
-                        <p>{year}</p>
+                    {pg}
+                    {year}
                         <Runtime runtime={runtime}/>
                     </div>
                     <p className='desc'>{desc}</p>

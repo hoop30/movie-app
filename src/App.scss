@@ -1,25 +1,37 @@
 @use './styles/variables';
 @use './styles/navMenu';
+@use './styles/search';
+@use './styles/searchResponse';
 @use './pages/home/styles/home';
 @use './pages/movie/styles/movie';
 
-*, body {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  border: none;
-  list-style: none;
-  text-decoration: none;
-  font-family: 'Nunito', sans-serif;
+*,
+body {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: none;
+    list-style: none;
+    text-decoration: none;
+    font-family: 'Nunito', sans-serif;
 }
 
-#root {
-  display: flex;
-  justify-content: center;
-  background: var(--black);
+body {
+    display: flex;
+    justify-content: center;
+    background: var(--black);
+    min-height: 100vh;
+
+    &>#root {
+        width: 399px;
+    }
 }
 
 .app {
-  background: var(--black);
-  width: 399px;
+    height: 100%;
+}
+
+
+:focus {
+    outline: none;
 }

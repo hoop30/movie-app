@@ -16,6 +16,4 @@ export function Runtime({ runtime }) {
             return <p>{min}m</p>
         }
     }
-}
-console.log('ok');
-        
+}        
