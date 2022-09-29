@@ -3,10 +3,29 @@ import { RiSearch2Line, RiHome5Fill, RiFileList2Fill, RiAccountCircleLine } from
 import { Link } from 'react-router-dom'
 import { SearchBtnContext } from '../context/SearchBtnContext'
 
+import { UserContext } from "../context/userContext"
+import { signOut } from "firebase/auth"
+import { useNavigate } from 'react-router-dom'
+import { auth } from "../libs/firebase-config"
+
 export function NavMenu() {
 
     const { SearchBtn, toggleSearchBtn } = useContext(SearchBtnContext)
     const [classSearchBtn, setClassSearchBtn] = useState('nav-btn')
+
+    const { toggleModals, currentUser } = useContext(UserContext)
+
+    const navigate = useNavigate()
+
+    const logOut = async () => {
+        try {
+            await signOut(auth)
+            navigate("/movie-app")
+        } catch {
+            alert("For some reasons we can't deconnect, please check your internet connexion and retry.")
+        }
+    }
+
 
     if (SearchBtn) {
         if (classSearchBtn !== 'nav-btn active') {
@@ -61,10 +80,12 @@ export function NavMenu() {
                         <RiFileList2Fill size="1.8em" />
                         Wishlist
                     </Link>
-                    <Link to="/movie-app" className='nav-link' onClick={HandleClick}>
+                    <button 
+                        className='nav-link'
+                        onClick={() => toggleModals("signUp")}>
                         <RiAccountCircleLine size="1.8em" />
-                        Profile
-                    </Link>
+                        {currentUser === null ? 'Login' : 'Logout'}
+                    </button>
                 </div>
             </nav>
         </div>
