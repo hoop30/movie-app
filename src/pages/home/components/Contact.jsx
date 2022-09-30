@@ -24,15 +24,15 @@ export function Contact() {
             <div className='links' href="https://www.kevin-granier.fr/" target="_blank" onMouseLeave={hide}>
                 <button className='btn-Contact' onClick={show} >Contact</button>
                 <div className='logo'>
-                    <a href="https://www.kevin-granier.fr/#contact" target="_blank">
-                        <img src={gmail} alt="gmail" />
+                    <a href="https://www.kevin-granier.fr/#contact" target="_blank" rel="noreferrer">
+                        <img src={gmail} alt="gmail"/>
                     </a>
                     <span className='separation'></span>
-                    <a href="https://www.linkedin.com/in/kevin-granier-207487221" target="_blank">
+                    <a href="https://www.linkedin.com/in/kevin-granier-207487221" target="_blank" rel="noreferrer">
                         <img src={linkedin} alt="linkedin" />
                     </a>
                     <span className='separation'></span>
-                    <a href="https://www.malt.fr/profile/kevingranier" target="_blank">
+                    <a href="https://www.malt.fr/profile/kevingranier" target="_blank" rel="noreferrer">
                         <img src={malt} alt="malt" />
                     </a>
                 </div>

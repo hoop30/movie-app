@@ -1,6 +1,7 @@
 import React, { useContext, useRef, useState } from "react";
 import { UserContext } from "../context/userContext";
 import { useNavigate } from "react-router-dom"
+import { IoCloseOutline } from 'react-icons/io5'
 
 export default function SignUpModal() {
 
@@ -22,6 +23,9 @@ export default function SignUpModal() {
   const handleForm = async (e) => {
     e.preventDefault()
 
+    console.log(inputs);
+
+
     if ((inputs.current[1].value.length || inputs.current[2].value.length) < 6) {
       setValidation("6 characters min")
       return;
@@ -33,7 +37,7 @@ export default function SignUpModal() {
 
     try {
 
-      const cred = await signUp(
+      await signUp(
         inputs.current[0].value,
         inputs.current[1].value
       )
@@ -41,7 +45,7 @@ export default function SignUpModal() {
       setValidation("")
       // console.log(cred);
       toggleModals("close")
-      navigate("/private/private-home")
+      navigate("/movie-app")
 
     } catch (err) {
 
@@ -65,33 +69,21 @@ export default function SignUpModal() {
   return (
     <>
       {modalState.signUpModal && (
-        <div className="position-fixed top-0 vw-100 vh-100">
-          <div
-            onClick={closeModal}
-            className="w-100 h-100 bg-dark bg-opacity-75">
+        <div className="modal">
+          <div onClick={closeModal} className="overlay">
           </div>
-          <div
-            className="position-absolute top-50 start-50 translate-middle"
-            style={{ minWidth: "400px" }}
-          >
-            <div className="modal-dialog">
-              <div className="modal-content">
+          <div className="modal-box">           
+              
                 <div className="modal-header">
                   <h5 className="modal-title">Sign Up</h5>
-                  <button
-                    onClick={closeModal}
-                    className="btn-close"></button>
+                  <button onClick={closeModal} className="btn-close-modal">
+                    <IoCloseOutline size="2.8em"/>
+                  </button>
                 </div>
 
                 <div className="modal-body">
-                  <form
-                    ref={formRef}
-                    onSubmit={handleForm}
-                    className="sign-up-form">
-                    <div className="mb-3">
-                      <label htmlFor="signUpEmail" className="form-label">
-                        Email adress
-                      </label>
+                  <form ref={formRef} onSubmit={handleForm} className="sign-up-form">
+                    <div className="input">
                       <input
                         ref={addInputs}
                         name="email"
@@ -99,13 +91,11 @@ export default function SignUpModal() {
                         type="email"
                         className="form-control"
                         id="signUpEmail"
+                        placeholder="Email adress"
                       />
                     </div>
 
-                    <div className="mb-3">
-                      <label htmlFor="signUpPwd" className="form-label">
-                        Password
-                      </label>
+                    <div className="input">
                       <input
                         ref={addInputs}
                         name="pwd"
@@ -113,13 +103,11 @@ export default function SignUpModal() {
                         type="password"
                         className="form-control"
                         id="signUpPwd"
+                        placeholder="Password"
                       />
                     </div>
 
-                    <div className="mb-3">
-                      <label htmlFor="repeatPwd" className="form-label">
-                        Repeat Password
-                      </label>
+                    <div className="input">
                       <input
                         ref={addInputs}
                         name="pwd"
@@ -127,17 +115,21 @@ export default function SignUpModal() {
                         type="password"
                         className="form-control"
                         id="repeatPwd"
+                        placeholder="Repeat Password"
                       />
                       <p className="text-danger mt-1">{validation}</p>
                     </div>
 
-                    <button className="btn btn-primary">Submit</button>
+                    <button className="btn-signin">Sign Up</button>
                   </form>
                 </div>
-              </div>
-            </div>
+                
+                <div className="modal-footer">
+                  <p>Already an account</p>
+                    <button onClick={() => toggleModals("signIn")}>Sign In</button>
+                </div>
+                       
           </div>
-
         </div>
       )}
     </>

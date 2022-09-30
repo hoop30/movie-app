@@ -64,6 +64,10 @@ export function NavMenu() {
         link.classList.add('active')
     }
 
+    function log() {
+        currentUser === null ? toggleModals("signIn") : logOut()
+    }
+
     return (
         <div className='nav-menu'>
             <nav>
@@ -82,7 +86,7 @@ export function NavMenu() {
                     </Link>
                     <button 
                         className='nav-link'
-                        onClick={() => toggleModals("signUp")}>
+                        onClick={log}>
                         <RiAccountCircleLine size="1.8em" />
                         {currentUser === null ? 'Login' : 'Logout'}
                     </button>
