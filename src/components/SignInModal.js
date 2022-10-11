@@ -1,30 +1,26 @@
 import React, { useContext, useRef, useState } from "react";
 import { UserContext } from "../context/userContext";
-import { useNavigate } from "react-router-dom";
 import { IoCloseOutline } from 'react-icons/io5'
 
 
 export default function SignInModal() {
-  const { modalState, toggleModals, signIn } = useContext(UserContext);
+  const { modalState, toggleModals, signIn } = useContext(UserContext)
 
-  const navigate = useNavigate();
+  const [validation, setValidation] = useState("")
 
-  const [validation, setValidation] = useState("");
-
-  const inputs = useRef([]);
+  const inputs = useRef([])
   inputs.current = []
   const addInputs = (el) => {
 
     if (el && !inputs.current.includes(el)) {
       inputs.current.push(el)
     }
-  };
+  }
 
-  const formRef = useRef();
+  const formRef = useRef()
 
   const handleForm = async (e) => {
-    e.preventDefault();
-    console.log(inputs);
+    e.preventDefault()
     
     try {
       await signIn(
@@ -33,17 +29,16 @@ export default function SignInModal() {
       )
       
       setValidation("");
-      toggleModals("close");
-      navigate("/movie-app");
+      toggleModals("close")
     } catch {
       setValidation("Email and/or password incorrect")
     }
   };
 
   const closeModal = () => {
-    setValidation("");
-    toggleModals("close");
-  };
+    setValidation("")
+    toggleModals("close")
+  }
 
   return (
     <>
@@ -100,5 +95,5 @@ export default function SignInModal() {
       </div>
       )}
     </>
-  );
+  )
 }

@@ -5,18 +5,18 @@ import { SearchBtnContext } from '../context/SearchBtnContext'
 
 import { UserContext } from "../context/userContext"
 import { signOut } from "firebase/auth"
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { auth } from "../libs/firebase-config"
+import { useEffect } from 'react'
 
 export function NavMenu() {
 
     const { SearchBtn, toggleSearchBtn } = useContext(SearchBtnContext)
     const [classSearchBtn, setClassSearchBtn] = useState('nav-btn')
-
     const { toggleModals, currentUser } = useContext(UserContext)
-
     const navigate = useNavigate()
-
+    const location = useLocation()
+    
     const logOut = async () => {
         try {
             await signOut(auth)
@@ -25,7 +25,6 @@ export function NavMenu() {
             alert("For some reasons we can't deconnect, please check your internet connexion and retry.")
         }
     }
-
 
     if (SearchBtn) {
         if (classSearchBtn !== 'nav-btn active') {
@@ -45,24 +44,23 @@ export function NavMenu() {
             link = link.parentNode
         }
 
-        if (link.nodeName === "A") {
-            colorLink(link)
-        }
         if (SearchBtn) {
             toggleSearchBtn()
         }
     }
 
-    function colorLink(link) {
+    useEffect(() => {
         const Links = document.querySelectorAll('.nav-link')
 
         Links.forEach(element => {
             if (element.className.includes('active')) {
                 element.classList.remove('active')
             }
+            if (location.pathname === element.id) {
+                element.classList.add('active')
+            }
         })
-        link.classList.add('active')
-    }
+    }, [location.pathname])
 
     function log() {
         currentUser === null ? toggleModals("signIn") : logOut()
@@ -72,7 +70,7 @@ export function NavMenu() {
         <div className='nav-menu'>
             <nav>
                 <div className='nav'>
-                    <Link to="/movie-app" className='nav-link active' onClick={HandleClick}>
+                    <Link to="/movie-app" id='/movie-app' className='nav-link active' onClick={HandleClick}>
                         <RiHome5Fill size="1.8em" />
                         Home
                     </Link>
@@ -80,11 +78,12 @@ export function NavMenu() {
                         <RiSearch2Line size="1.8em" />
                         Search
                     </button>
-                    <Link to="/movie-app" className='nav-link' onClick={HandleClick}>
+                    <Link to="/private" id='/private' className='nav-link'>
                         <RiFileList2Fill size="1.8em" />
                         Wishlist
                     </Link>
                     <button 
+                        id='log'
                         className='nav-link'
                         onClick={log}>
                         <RiAccountCircleLine size="1.8em" />
