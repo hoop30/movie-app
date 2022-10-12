@@ -1,0 +1,22 @@
+.movieWhilist {
+    display: flex;
+    width: 90%;
+    gap: 10px;
+    height: 150px;
+    color: var(--white);
+    overflow: hidden;
+    margin-bottom: 20px;
+
+    &>img {
+        height: 100%;
+        width: 100px;
+    }
+
+    &>div {
+        
+        &>h2 {
+            font-size: 1.2em;
+        }
+
+    }
+}

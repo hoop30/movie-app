@@ -5,6 +5,8 @@
 @use './styles/searchResponse';
 @use './pages/home/styles/home';
 @use './pages/movie/styles/movie';
+@use './pages/private/wishlist/styles/movieWhilist';
+@use './pages/private/wishlist/styles/wishlist';
 
 *,
 body {
