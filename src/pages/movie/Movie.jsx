@@ -1,12 +1,16 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { useLocation } from 'react-router-dom'
 import { FetchMovie } from '../../libs/Omdb'
 import { RiStarSmileFill } from 'react-icons/ri'
 import { Rate } from './components/Rate'
 import { Runtime } from './components/Runtime'
+import {WishlistAdd} from '../../libs/WishlistAdd'
+import { UserContext } from "../../context/userContext"
+
 
 export function Movie() {
 
+    const { currentUser } = useContext(UserContext)
     const newLocation = useLocation()
     const loc = newLocation.search.substring(3)
     const [movie, setMovie] = useState(null)
@@ -36,8 +40,6 @@ export function Movie() {
             desc = movie.Plot
         }
 
-        console.log(movie);
-
         return (
             <div className="movie-layout">
                 <img src={image} alt="" />
@@ -53,7 +55,7 @@ export function Movie() {
                         <Runtime runtime={runtime}/>
                     </div>
                     <p className='desc'>{desc}</p>
-                    <button className='wishListAdd'>Wishlist Add</button>
+                    <button className='wishListAdd' onClick={() => WishlistAdd(movie, currentUser)}>Wishlist Add</button>
                 </div>
             </div>
         )

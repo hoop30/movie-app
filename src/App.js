@@ -11,7 +11,6 @@ import SignInModal from './components/SignInModal'
 import SignUpModal from './components/SignUpModal'
 import Private from "./pages/private/Private"
 
-
 function App() {
 
     return (
