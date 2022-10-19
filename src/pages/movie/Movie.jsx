@@ -4,7 +4,7 @@ import { FetchMovie } from '../../libs/Omdb'
 import { RiStarSmileFill } from 'react-icons/ri'
 import { Rate } from './components/Rate'
 import { Runtime } from './components/Runtime'
-import {WishlistAdd} from '../../libs/WishlistAdd'
+import { WishlistAdd } from '../../libs/Firebase'
 import { UserContext } from "../../context/userContext"
 
 

@@ -8,7 +8,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper";
 
-export function HeadingList() {
+export function HeadingList({ onUpdateLink }) {
 
     const [list, setList] = useState([])
     const slides = []
@@ -29,13 +29,10 @@ export function HeadingList() {
             
             const title = list[i].Title
             const img = list[i].Poster
-            const link = `/movie?m=${title}`
 
             const newSlide = (
                 <SwiperSlide key={i}>
-                    <Link to={link}>
-                        <img src={img} alt={title} />
-                    </Link>
+                    <img src={img} alt={title} />
                 </SwiperSlide>
             )
 
@@ -47,7 +44,9 @@ export function HeadingList() {
             <Swiper 
                 pagination={true} 
                 modules={[Pagination]}
-                className="Heading-Swiper">
+                className="Heading-Swiper"
+                onSlideChange={(swiper) => onUpdateLink(swiper)}
+                onSwiper={(swiper) => onUpdateLink(swiper)}>
                 {slides}
             </Swiper>
     )
