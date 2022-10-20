@@ -1,15 +1,18 @@
-import React, {useContext} from 'react'
-import {UserContext} from "../../context/userContext"
+import React, { useContext } from 'react'
+import { UserContext } from "../../context/userContext"
 import Wishlist from "./wishlist/Wishlist"
 
 export default function Private() {
 
-  const {toggleModals, currentUser} = useContext(UserContext)
+  const { toggleModals, currentUser } = useContext(UserContext)
 
-  if(!currentUser) {
-    
+  if (!currentUser) {
+
     return (
-      <h2>To create wishlist please <button onClick={() => toggleModals("signIn")}>log In</button></h2>
+      <div className='wishlist-log'>
+        <h2>To create wishlist please </h2>
+        <button onClick={() => toggleModals("signIn")}>log In</button>
+      </div>
     )
   }
 

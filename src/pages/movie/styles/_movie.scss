@@ -62,5 +62,9 @@
             color: var(--white);
             box-shadow: inset 4px 4px 10px rgba(0, 0, 0, 0.2);
         }
+
+        &.remove {
+            background: var(--red);
+        }
     }
 }

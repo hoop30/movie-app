@@ -1,0 +1,25 @@
+.wishlist-log {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    &>button {
+        width: 155px;
+        height: 48px;
+        border-radius: 8px;
+        border: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: 500;
+        font-size: 1em;
+        font-weight: 600;
+        background: var(--yellow);
+
+        &:hover {
+            color: var(--white);
+        }
+    }
+}

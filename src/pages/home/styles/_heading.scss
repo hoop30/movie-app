@@ -35,10 +35,14 @@
                 font-weight: 500;
                 font-size: 1em;
                 font-weight: 600;
+                transition: 0.3s ease-out;
 
                 &:first-child {
                     background: var(--grey);
                     color: var(--white);
+                    &.remove {
+                        background: var(--red);
+                    }
                 }
                 &:last-child {
                     background: var(--yellow);

@@ -1,8 +1,8 @@
-import { collection, addDoc, getDocs, doc, deleteDoc, updateDoc, deleteField } from "firebase/firestore";
+import { collection, addDoc, getDocs, doc, deleteDoc } from "firebase/firestore";
 import { db } from "./firebase-config"
 
 export async function WishlistAdd(movie, currentUser) {
-
+  
   const userId = currentUser.uid
   const movieTitle = movie.Title
 

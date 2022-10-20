@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { FetchMovie } from '../../../libs/Omdb'
 import { WishlistRemove } from "../../../libs/Firebase";
+import { BsTrash } from 'react-icons/bs'
 
 
 export function MovieWhilist({ movie, currentUser, movieId, refreshWishList}) {
@@ -11,9 +12,22 @@ export function MovieWhilist({ movie, currentUser, movieId, refreshWishList}) {
         FetchMovie(setNewMovie, movie)
     }, [movie])
 
-    function movieRemove() {
-        WishlistRemove(movieId, currentUser)
-        refreshWishList()
+    function movieRemove(e) {
+        //console.log(e.target.tagName)
+        let btn = e.target
+        while (btn.tagName !== 'BUTTON') {
+            btn = btn.parentNode
+            
+        }
+        
+        btn.nextSibling.classList.add('remove')
+        btn.parentNode.style.height = '0px'
+
+        setTimeout(() => {
+            WishlistRemove(movieId, currentUser)
+            refreshWishList()
+        }, 900);
+        
     }
 
     if (newMovie !== undefined) {
@@ -28,7 +42,10 @@ export function MovieWhilist({ movie, currentUser, movieId, refreshWishList}) {
                     <h2>{title}</h2>
                     <p>{Plot}</p>
                 </div>
-                <button className='wishListRemove' onClick={movieRemove}>Remove</button>
+                <button className='remove-btn' onClick={movieRemove}>
+                    <BsTrash size='2em'/>  
+                </button>
+                <div id='overlay-btn' className="overlay-btn"></div>
             </div>
         )
     }
