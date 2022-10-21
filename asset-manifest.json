@@ -1,18 +1,18 @@
 {
   "files": {
     "main.css": "/movie-app/static/css/main.1fd73721.css",
-    "main.js": "/movie-app/static/js/main.5ff30535.js",
+    "main.js": "/movie-app/static/js/main.a24171ee.js",
     "static/js/787.7c42db31.chunk.js": "/movie-app/static/js/787.7c42db31.chunk.js",
     "static/media/Gilroy-ExtraBold.otf": "/movie-app/static/media/Gilroy-ExtraBold.0094146a0505298ed06a.otf",
     "static/media/Gilroy-Light.otf": "/movie-app/static/media/Gilroy-Light.cc7ab55d27205bd64001.otf",
     "static/media/code-640.jpg": "/movie-app/static/media/code-640.c920560ce35666373112.jpg",
     "index.html": "/movie-app/index.html",
     "main.1fd73721.css.map": "/movie-app/static/css/main.1fd73721.css.map",
-    "main.5ff30535.js.map": "/movie-app/static/js/main.5ff30535.js.map",
+    "main.a24171ee.js.map": "/movie-app/static/js/main.a24171ee.js.map",
     "787.7c42db31.chunk.js.map": "/movie-app/static/js/787.7c42db31.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.1fd73721.css",
-    "static/js/main.5ff30535.js"
+    "static/js/main.a24171ee.js"
   ]
 }
