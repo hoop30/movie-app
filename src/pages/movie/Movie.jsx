@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect, useContext, useCallback } from 'react'
 import { useLocation } from 'react-router-dom'
 import { FetchMovie } from '../../libs/Omdb'
 import { RiStarSmileFill } from 'react-icons/ri'
@@ -10,7 +10,7 @@ import { UserContext } from "../../context/userContext"
 
 export function Movie() {
 
-    const { currentUser } = useContext(UserContext)
+    const { toggleModals, currentUser } = useContext(UserContext)
     const newLocation = useLocation()
     const loc = newLocation.search.substring(3)
     const [movie, setMovie] = useState(null)
@@ -18,10 +18,11 @@ export function Movie() {
     const [movieId, setMovieId] = useState("")
     const addBtn = addRemoveBtn()
 
+    // Refrech on currentUser change to reset WishList Btn 
     useEffect(() => {
         FetchMovie(setMovie, loc)
         setBtn()
-    }, [loc]);
+    }, [setBtn, loc, currentUser]);
 
     // Refrech user WishList, to set the Add/Remove Btn.
     /*
@@ -30,14 +31,14 @@ export function Movie() {
     */
     function setBtn() {
         setTimeout(() => {
-            WishlistGet(currentUser)
+            currentUser !== null && WishlistGet(currentUser)
             .then(movieList => {
                 setWishList(movieList)
             })
         addRemoveBtn()
         }, 100);
     }
-
+    
     // Set Add or Remove Btn by comparison WishList and Curent movieTitle
     function addRemoveBtn() {
         let Btn = true
@@ -49,7 +50,6 @@ export function Movie() {
                 
                 if (movieId !== movieWish.movieId) {
                     setMovieId(movieWish.movieId)
-                    console.log('ok')
                 }
             }
         })
@@ -96,7 +96,9 @@ export function Movie() {
                     <p className='desc'>{desc}</p>
                     {addBtn ?
                         <button className='wishListAdd' onClick={() => {
-                                WishlistAdd(movie, currentUser)
+                                currentUser ? 
+                                    WishlistAdd(movie, currentUser) : 
+                                    toggleModals("signIn")
                                 setBtn()
                             }}>
                             Wishlist Add

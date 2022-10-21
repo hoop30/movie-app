@@ -8,7 +8,7 @@ import { UserContext } from '../../../context/userContext'
 
 export function Heading() {
 
-    const { currentUser } = useContext(UserContext)
+    const { toggleModals, currentUser } = useContext(UserContext)
     // Heading movie list show on Slider
     const films = [
         "stranger things",
@@ -20,19 +20,21 @@ export function Heading() {
     const [movieSlide, setMovieSlide] = useState(films[0])
     const [wishList, setWishList] = useState([])
     const [movieId, setMovieId] = useState("")
-    const addBtn = addRemoveBtn()
+    // Set addBtn with currentUser, to reset it on logOut
+    let addBtn
+    currentUser !== null ? addBtn = addRemoveBtn() : addBtn = true
 
     useEffect(() => {
         setBtn()
-    }, [movieSlide, movieId])
+    }, [movieSlide, movieId, currentUser])
 
     // Refrech user WishList, to set the Add/Remove Btn.
     /*
     Using on componemt mount and on SlideChange
     */
     function setBtn() {
-
-        WishlistGet(currentUser)
+        
+        currentUser !== null && WishlistGet(currentUser)
             .then(movieList => {
                 setWishList(movieList)
             })
@@ -42,10 +44,12 @@ export function Heading() {
     // Set Add or Remove Btn by comparison WishList and Curent Slider movieTitle
     function addRemoveBtn() {
         let Btn = true
-
+        
         wishList.forEach(movie => {
+
             if (movie.movieTitle.toLowerCase() === movieSlide.toLowerCase()) {
                 Btn = false
+
                 if (movieId !== movie.movieId) {
                     setMovieId(movie.movieId)
                 }
@@ -68,7 +72,9 @@ export function Heading() {
                 <div className='btn-background-film'>
                     {addBtn ?
                         <button onClick={() => {
-                            WishlistAdd({ Title: movieSlide }, currentUser)
+                            currentUser ? 
+                                WishlistAdd({ Title: movieSlide }, currentUser) : 
+                                toggleModals("signIn")
                             setBtn()
                         }}>
                             <BiPlus size='1.6em' />
