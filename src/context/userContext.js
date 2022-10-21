@@ -1,5 +1,4 @@
 import { createContext, useState, useEffect } from "react";
-
 import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
@@ -11,10 +10,11 @@ export const UserContext = createContext()
 
 export function UserContextProvider(props) {
 
-
+  // Firebase function to create or logIn users
   const signUp = (email, pwd) => createUserWithEmailAndPassword(auth, email, pwd)
   const signIn = (email, pwd) => signInWithEmailAndPassword(auth, email, pwd)
 
+  // Store user state (connected or not), and loading to wait the user state
   const [currentUser, setCurrentUser] = useState();
   const [loadingData, setLoadingData] = useState(true);
   
@@ -26,16 +26,15 @@ export function UserContextProvider(props) {
     })
 
     return unsubscribe;
-
   }, [])
 
-
-  // modal
+  // Modal show state
   const [modalState, setModalState] = useState({
     signUpModal: false,
     signInModal: false
   })
 
+  // Modal toggle state
   const toggleModals = modal => {
     if(modal === "signIn") {
       setModalState({

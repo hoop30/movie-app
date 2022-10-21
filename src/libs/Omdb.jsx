@@ -1,3 +1,4 @@
+// Fetch request with search ref, and Store it on setList. Using movie Title Ref. Return a List
 export const FetchList = async (setList, search) => {
 
     const url = `https://www.omdbapi.com/?apikey=865a7117&s=${search}`
@@ -8,6 +9,7 @@ export const FetchList = async (setList, search) => {
     setList(film.Search)
 }
 
+// Fetch request with search ref, and Store it on setList. Using movie Title Ref. Return a Unique movie
 export const FetchMovie = async (setMovie, search) => {
     
     const url = `https://www.omdbapi.com/?apikey=865a7117&t=${search}`
@@ -18,6 +20,10 @@ export const FetchMovie = async (setMovie, search) => {
     setMovie(film)
 }
 
+// Fetch request with Array for ref, and Store it on setList
+/*
+Using for the Heading Slider
+*/
 export const FetchTable = async (setList, searchTable) => {
 
     const url0 = `https://www.omdbapi.com/?apikey=865a7117&t=${searchTable[0]}`
@@ -40,19 +46,3 @@ export const FetchTable = async (setList, searchTable) => {
 
     setList([film0, film1, film2, film3, film4])
 }
-
-// ========
-
-/*
-
-, { useState, useEffect }
-import React, { useState, useEffect } from 'react'
-
-
-const [filmImg, setFilmImg] = useState()
-    
-useEffect(() => {
-    FetchFilmImg(setFilmImg);
-}, []);
-
-*/

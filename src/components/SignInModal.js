@@ -3,16 +3,15 @@ import { UserContext } from "../context/userContext";
 import { useNavigate } from "react-router-dom";
 import { IoCloseOutline } from 'react-icons/io5'
 
-
 export default function SignInModal() {
-  const { modalState, toggleModals, signIn } = useContext(UserContext);
 
-  const navigate = useNavigate();
-
-  const [validation, setValidation] = useState("");
-
-  const inputs = useRef([]);
+  const { modalState, toggleModals, signIn } = useContext(UserContext)
+  const [validation, setValidation] = useState("")
+  const inputs = useRef([])
   inputs.current = []
+  const formRef = useRef()
+  
+  // Store form input value on any change
   const addInputs = (el) => {
 
     if (el && !inputs.current.includes(el)) {
@@ -20,8 +19,7 @@ export default function SignInModal() {
     }
   };
 
-  const formRef = useRef();
-
+  // Send form and reset input value, or show error message
   const handleForm = async (e) => {
     e.preventDefault();
     console.log(inputs);
@@ -91,6 +89,7 @@ export default function SignInModal() {
                 </form>
               </div>
               
+              {/* switch to signUp modal */}
               <div className="modal-footer">
                 <p>first visit to Movie-app</p>
                   <button onClick={() => toggleModals("signUp")}>Sign Up</button>

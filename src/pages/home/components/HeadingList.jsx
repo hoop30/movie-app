@@ -22,8 +22,9 @@ export function HeadingList() {
     
     useEffect(() => {
         FetchTable(setList, films);
-    }, []);
+    }, [])
 
+    // Update and format slides with Array list
     if (list !== undefined) {
         for (let i = 0; i < list.length; i++) {
             

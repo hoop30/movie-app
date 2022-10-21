@@ -15,6 +15,7 @@ export function List({ name }) {
         FetchList(setList, name);
     }, [name]);
 
+    // Create and format List with name, to add a movie list slide
     if (list !== undefined) {
         for (let i = 0; i < list.length; i++) {
             

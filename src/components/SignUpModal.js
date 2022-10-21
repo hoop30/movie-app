@@ -6,31 +6,26 @@ import { IoCloseOutline } from 'react-icons/io5'
 export default function SignUpModal() {
 
   const { modalState, toggleModals, signUp } = useContext(UserContext);
-
   const navigate = useNavigate();
-
-
   const [validation, setValidation] = useState("");
-
   const inputs = useRef([])
+  const formRef = useRef();
+  
+  // Store form input value on any change
   const addInputs = el => {
     if (el && !inputs.current.includes(el)) {
       inputs.current.push(el)
     }
   }
-  const formRef = useRef();
 
+  // Test input value, send form and reset input value, or show error message
   const handleForm = async (e) => {
     e.preventDefault()
-
-    console.log(inputs);
-
 
     if ((inputs.current[1].value.length || inputs.current[2].value.length) < 6) {
       setValidation("6 characters min")
       return;
-    }
-    else if (inputs.current[1].value !== inputs.current[2].value) {
+    } else if (inputs.current[1].value !== inputs.current[2].value) {
       setValidation("Passwords do not match")
       return;
     }
@@ -46,7 +41,6 @@ export default function SignUpModal() {
       // console.log(cred);
       toggleModals("close")
       navigate("/movie-app")
-
     } catch (err) {
 
       if (err.code === "auth/invalid-email") {
@@ -56,9 +50,7 @@ export default function SignUpModal() {
       if (err.code === "auth/email-already-in-use") {
         setValidation("Email already used")
       }
-
     }
-
   }
 
   const closeModal = () => {
@@ -124,6 +116,7 @@ export default function SignUpModal() {
                   </form>
                 </div>
                 
+                {/* switch to signIn modal */}
                 <div className="modal-footer">
                   <p>Already an account</p>
                     <button onClick={() => toggleModals("signIn")}>Sign In</button>

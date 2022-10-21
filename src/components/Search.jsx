@@ -11,6 +11,11 @@ export function Search() {
     const [inputValue, setInputValue] = useState('')
     const [classSearchBox, setClassSearchBox] = useState('search-box')
 
+    useEffect(() => {
+        FetchList(setFilmSearch, inputValue)
+    }, [inputValue])
+
+    // Open or close the Search Menu by change is class, using the SearchBtn active or not.
     if (SearchBtn) {
         if (classSearchBox !== 'search-box show') {
             setClassSearchBox('search-box show')
@@ -19,19 +24,17 @@ export function Search() {
         setClassSearchBox('search-box')
     }
 
+    // Store the input value to show
     function handleInput(e) {
         const newSearch = e.target.value
         setInputValue(newSearch)
     }
     
+    // Reset the search input, and close the search menu when result is clicked
     function searchReset() {
         setInputValue('')
         toggleSearchBtn()
     }
-
-    useEffect(() => {
-        FetchList(setFilmSearch, inputValue)
-    }, [inputValue])
 
     return (
         <div className={classSearchBox} id='search'>

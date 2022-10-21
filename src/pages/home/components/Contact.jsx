@@ -6,10 +6,12 @@ import malt from '../../../assets/logo/malt.png'
 
 export function Contact() {
 
+    // show the icons on the contact button, onclick
     function show(e) {
         e.target.classList.add('hide')
     }
 
+    // hide the icons on the contact button, onMouseLeave
     function hide(e) {
         const btn = document.querySelector('.btn-Contact')
         btn.classList.remove('hide')
@@ -22,7 +24,11 @@ export function Contact() {
             <p>Ce projet a été realiser avec React et l'api Omdb. si ce projet vous a plus n'etister plus contacter moi!<BiDownvote /></p>
             
             <div className='links' href="https://www.kevin-granier.fr/" target="_blank" onMouseLeave={hide}>
+                
+                {/* Contact Btn */}
                 <button className='btn-Contact' onClick={show} >Contact</button>
+                
+                {/* Icons under the Contact Btn */}
                 <div className='logo'>
                     <a href="https://www.kevin-granier.fr/#contact" target="_blank" rel="noreferrer">
                         <img src={gmail} alt="gmail"/>
@@ -35,6 +41,7 @@ export function Contact() {
                     <a href="https://www.malt.fr/profile/kevingranier" target="_blank" rel="noreferrer">
                         <img src={malt} alt="malt" />
                     </a>
+                
                 </div>
             </div>
         </div>

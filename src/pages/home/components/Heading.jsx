@@ -4,17 +4,84 @@ import { BsPlus } from 'react-icons/bs'
 import { HeadingList } from './HeadingList';
 
 export function Heading() {
+
+    const { currentUser } = useContext(UserContext)
+    // Heading movie list show on Slider
+    const films = [
+        "stranger things",
+        "rogue one",
+        "pirates of the caribbean",
+        "thor love and thunder",
+        "WandaVision"
+    ]
+    const [movieSlide, setMovieSlide] = useState(films[0])
+    const [wishList, setWishList] = useState([])
+    const [movieId, setMovieId] = useState("")
+    const addBtn = addRemoveBtn()
+
+    useEffect(() => {
+        setBtn()
+    }, [movieSlide, movieId])
+
+    // Refrech user WishList, to set the Add/Remove Btn.
+    /*
+    Using on componemt mount and on SlideChange
+    */
+    function setBtn() {
+
+        WishlistGet(currentUser)
+            .then(movieList => {
+                setWishList(movieList)
+            })
+        addRemoveBtn()
+    }
+
+    // Set Add or Remove Btn by comparison WishList and Curent Slider movieTitle
+    function addRemoveBtn() {
+        let Btn = true
+
+        wishList.forEach(movie => {
+
+            if (movie.movieTitle.toLowerCase() === movieSlide.toLowerCase()) {
+                Btn = false
+                if (movieId !== movie.movieId) {
+                    setMovieId(movie.movieId)
+                }
+            }
+        })
+
+        return Btn
+    }
+
+    // Update the Detail Link on SliderChange
+    function updateLink(swiper) {
+
+        setMovieSlide(films[swiper.activeIndex])
+    }
+
     return (
         <div className='home-heading'>
             <HeadingList />
             <div className='heading-link'>
                 <Link to="/">My list</Link>
                 <div className='btn-background-film'>
-                    <button>
-                        <BsPlus size='1.6em'/>
-                        Wishlist
-                    </button>
-                    <Link to="/">Details</Link>
+                    {addBtn ?
+                        <button onClick={() => {
+                            WishlistAdd({ Title: movieSlide }, currentUser)
+                            setBtn()
+                        }}>
+                            <BiPlus size='1.6em' />
+                            Wishlist
+                        </button> :
+                        <button className='remove' onClick={() => {
+                            WishlistRemove(movieId, currentUser)
+                            setBtn()
+                        }}>
+                            <BiMinus size='1.6em' />
+                            Wishlist
+                        </button>
+                    }
+                    <Link to={`/movie?m=${movieSlide}`}>Details</Link>
                 </div>
             </div>
         </div>
