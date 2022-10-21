@@ -4,7 +4,7 @@ import { WishlistRemove } from "../../../libs/Firebase";
 import { BsTrash } from 'react-icons/bs'
 
 
-export function MovieWhilist({ movie, currentUser, movieId, refreshWishList}) {
+export function MovieWishlist({ movie, currentUser, movieId, refreshWishList}) {
 
     const [newMovie, setNewMovie] = useState()
     
@@ -12,21 +12,25 @@ export function MovieWhilist({ movie, currentUser, movieId, refreshWishList}) {
         FetchMovie(setNewMovie, movie)
     }, [movie])
 
+    // Play remove animation, and remove the movie from WishList
     function movieRemove(e) {
-        //console.log(e.target.tagName)
+
+        // traced back to button element, when path or svg is cliked
         let btn = e.target
         while (btn.tagName !== 'BUTTON') {
             btn = btn.parentNode
             
         }
         
+        // add style to Btn layout and movie Div before remove it
         btn.nextSibling.classList.add('remove')
         btn.parentNode.style.height = '0px'
 
+        // Remove after animation
         setTimeout(() => {
             WishlistRemove(movieId, currentUser)
             refreshWishList()
-        }, 900);
+        }, 900)
         
     }
 

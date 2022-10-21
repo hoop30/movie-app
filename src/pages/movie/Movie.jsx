@@ -23,6 +23,11 @@ export function Movie() {
         setBtn()
     }, [loc]);
 
+    // Refrech user WishList, to set the Add/Remove Btn.
+    /*
+    Using on componemt mount and on Btn click
+    Timeout to get the WishList after Add or Removed
+    */
     function setBtn() {
         setTimeout(() => {
             WishlistGet(currentUser)
@@ -33,7 +38,7 @@ export function Movie() {
         }, 100);
     }
 
-    console.log(movieId);
+    // Set Add or Remove Btn by comparison WishList and Curent movieTitle
     function addRemoveBtn() {
         let Btn = true
 
@@ -52,8 +57,10 @@ export function Movie() {
     }
 
     if (movie === null) {
+
         return <div className='movie-loading'></div>
     } else {
+
         const image = movie.Poster
         let pg = null
         let year = null
@@ -61,7 +68,7 @@ export function Movie() {
         const title = movie.Title
         let desc = null
 
-        //console.log(pg.props.children);
+        // Prevent to display "N/A" if variable is not specified
         if (movie.Rated !== "N/A") {
             pg = <p>{movie.Rated}</p>
         }

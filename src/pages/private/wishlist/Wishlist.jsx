@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react'
 import { useState } from 'react'
 import { UserContext } from "../../../context/userContext"
 import { WishlistGet } from '../../../libs/Firebase'
-import { MovieWhilist } from './MovieWhilist'
+import { MovieWishlist } from './MovieWishlist'
 
 export default function Wishlist() {
 
@@ -17,6 +17,7 @@ export default function Wishlist() {
       })
   }, [currentUser])
 
+  // Refresh WishList on MovieWishList
   function onRefresh() {
     WishlistGet(currentUser)
       .then(movieList => {
@@ -26,8 +27,9 @@ export default function Wishlist() {
 
   if (wishlist !== undefined) {
 
+    // Update the list with all movies of WishList
     wishlist.forEach(movie => {
-      const newMovie = <MovieWhilist movie={movie.movieTitle} currentUser={currentUser} movieId={movie.movieId} key={movie.movieTitle} refreshWishList={onRefresh} />
+      const newMovie = <MovieWishlist movie={movie.movieTitle} currentUser={currentUser} movieId={movie.movieId} key={movie.movieTitle} refreshWishList={onRefresh} />
 
       list.push(newMovie)
     });

@@ -2,9 +2,13 @@ import React from 'react'
 
 export function Runtime({ runtime }) {
 
+    // extract time from runtime string
     const run = runtime.split(' ')
+    // convert time into hours
     const time = (Number(run[0]) / 60)
-   
+
+    // If time is not specified so run[0] is not a numbers, no display
+    // Else format time into hours and minutes
     if (isNaN(run[0])) {
         return null
     } else {

@@ -6,6 +6,7 @@ export default function Private() {
 
   const { toggleModals, currentUser } = useContext(UserContext)
 
+  // Use UserContext to display WhishList page or open LogIn modal
   if (!currentUser) {
 
     return (
