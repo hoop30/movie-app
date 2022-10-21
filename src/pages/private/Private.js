@@ -1,19 +1,22 @@
-import React, {useContext} from 'react'
-import {UserContext} from "../../context/userContext"
-import {Outlet, Navigate} from "react-router-dom"
+import React, { useContext } from 'react'
+import { UserContext } from "../../context/userContext"
+import Wishlist from "./wishlist/Wishlist"
 
 export default function Private() {
 
-  const {currentUser} = useContext(UserContext)
-  console.log("PRIVATE", currentUser);
+  const { toggleModals, currentUser } = useContext(UserContext)
 
-  if(!currentUser) {
-    return <Navigate to="/" />
+  if (!currentUser) {
+
+    return (
+      <div className='wishlist-log'>
+        <h2>To create wishlist please </h2>
+        <button onClick={() => toggleModals("signIn")}>log In</button>
+      </div>
+    )
   }
 
   return (
-    <div className="container">
-      <Outlet />
-    </div>
+    <Wishlist />
   )
 }

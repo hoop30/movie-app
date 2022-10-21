@@ -10,8 +10,6 @@ import SearchBtnContextProvider from './context/SearchBtnContext'
 import SignInModal from './components/SignInModal'
 import SignUpModal from './components/SignUpModal'
 import Private from "./pages/private/Private"
-import Wishlist from "./pages/private/wishlist/Wishlist"
-
 
 function App() {
 
@@ -22,9 +20,7 @@ function App() {
             <Routes>
                 <Route path="/movie-app" element={<Home />} />
                 <Route path="/movie" element={<Movie />} />
-                <Route path="/private" element={<Private />}>
-                    <Route path="/private/wishlist" element={<Wishlist />} />
-                </Route>
+                <Route path="/private" element={<Private />} />
             </Routes>
             <SearchBtnContextProvider>
                 <NavMenu />

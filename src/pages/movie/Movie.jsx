@@ -1,19 +1,55 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { useLocation } from 'react-router-dom'
 import { FetchMovie } from '../../libs/Omdb'
 import { RiStarSmileFill } from 'react-icons/ri'
 import { Rate } from './components/Rate'
 import { Runtime } from './components/Runtime'
+import { WishlistAdd, WishlistGet, WishlistRemove } from '../../libs/Firebase'
+import { UserContext } from "../../context/userContext"
+
 
 export function Movie() {
 
+    const { currentUser } = useContext(UserContext)
     const newLocation = useLocation()
     const loc = newLocation.search.substring(3)
     const [movie, setMovie] = useState(null)
+    const [wishList, setWishList] = useState([])
+    const [movieId, setMovieId] = useState("")
+    const addBtn = addRemoveBtn()
 
     useEffect(() => {
-        FetchMovie(setMovie, loc);
+        FetchMovie(setMovie, loc)
+        setBtn()
     }, [loc]);
+
+    function setBtn() {
+        setTimeout(() => {
+            WishlistGet(currentUser)
+            .then(movieList => {
+                setWishList(movieList)
+            })
+        addRemoveBtn()
+        }, 100);
+    }
+
+    console.log(movieId);
+    function addRemoveBtn() {
+        let Btn = true
+
+        wishList.forEach(movieWish => {
+            
+            if (movieWish.movieTitle.toLowerCase() === movie.Title.toLowerCase()) {
+                Btn = false
+                
+                if (movieId !== movieWish.movieId) {
+                    setMovieId(movieWish.movieId)
+                    console.log('ok')
+                }
+            }
+        })
+        return Btn
+    }
 
     if (movie === null) {
         return <div className='movie-loading'></div>
@@ -36,8 +72,6 @@ export function Movie() {
             desc = movie.Plot
         }
 
-        console.log(movie);
-
         return (
             <div className="movie-layout">
                 <img src={image} alt="" />
@@ -53,7 +87,20 @@ export function Movie() {
                         <Runtime runtime={runtime}/>
                     </div>
                     <p className='desc'>{desc}</p>
-                    <button className='wishListAdd'>Wishlist Add</button>
+                    {addBtn ?
+                        <button className='wishListAdd' onClick={() => {
+                                WishlistAdd(movie, currentUser)
+                                setBtn()
+                            }}>
+                            Wishlist Add
+                        </button> :
+                        <button className='wishListAdd remove' onClick={() => {
+                                WishlistRemove(movieId, currentUser)
+                                setBtn()
+                            }}>
+                            Wishlist Remove
+                        </button>
+                    }
                 </div>
             </div>
         )

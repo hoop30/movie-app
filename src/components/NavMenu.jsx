@@ -4,8 +4,9 @@ import { Link } from 'react-router-dom'
 import { SearchBtnContext } from '../context/SearchBtnContext'
 import { UserContext } from "../context/userContext"
 import { signOut } from "firebase/auth"
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { auth } from "../libs/firebase-config"
+import { useEffect } from 'react'
 
 export function NavMenu() {
 
@@ -64,7 +65,7 @@ export function NavMenu() {
         <div className='nav-menu'>
             <nav>
                 <div className='nav'>
-                    <Link to="/movie-app" className='nav-link active' onClick={HandleClick}>
+                    <Link to="/movie-app" id='/movie-app' className='nav-link active' onClick={HandleClick}>
                         <RiHome5Fill size="1.8em" />
                         Home
                     </Link>
@@ -77,6 +78,7 @@ export function NavMenu() {
                         Wishlist
                     </Link>
                     <button 
+                        id='log'
                         className='nav-link'
                         onClick={() => {
                             log()

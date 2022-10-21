@@ -1,6 +1,5 @@
 import React, { useContext, useRef, useState } from "react";
 import { UserContext } from "../context/userContext";
-import { useNavigate } from "react-router-dom";
 import { IoCloseOutline } from 'react-icons/io5'
 
 export default function SignInModal() {
@@ -17,12 +16,11 @@ export default function SignInModal() {
     if (el && !inputs.current.includes(el)) {
       inputs.current.push(el)
     }
-  };
+  }
 
   // Send form and reset input value, or show error message
   const handleForm = async (e) => {
-    e.preventDefault();
-    console.log(inputs);
+    e.preventDefault()
     
     try {
       await signIn(
@@ -31,17 +29,16 @@ export default function SignInModal() {
       )
       
       setValidation("");
-      toggleModals("close");
-      navigate("/movie-app");
+      toggleModals("close")
     } catch {
       setValidation("Email and/or password incorrect")
     }
   };
 
   const closeModal = () => {
-    setValidation("");
-    toggleModals("close");
-  };
+    setValidation("")
+    toggleModals("close")
+  }
 
   return (
     <>
@@ -99,5 +96,5 @@ export default function SignInModal() {
       </div>
       )}
     </>
-  );
+  )
 }

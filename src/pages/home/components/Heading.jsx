@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Link } from 'react-router-dom';
-import { BsPlus } from 'react-icons/bs'
+import { BiPlus, BiMinus } from 'react-icons/bi'
 import { HeadingList } from './HeadingList';
+import { useState } from 'react';
+import { WishlistAdd, WishlistGet, WishlistRemove } from '../../../libs/Firebase'
+import { UserContext } from '../../../context/userContext'
 
 export function Heading() {
 
@@ -41,7 +44,6 @@ export function Heading() {
         let Btn = true
 
         wishList.forEach(movie => {
-
             if (movie.movieTitle.toLowerCase() === movieSlide.toLowerCase()) {
                 Btn = false
                 if (movieId !== movie.movieId) {
@@ -61,9 +63,8 @@ export function Heading() {
 
     return (
         <div className='home-heading'>
-            <HeadingList />
+            <HeadingList onUpdateLink={updateLink} films={films} />
             <div className='heading-link'>
-                <Link to="/">My list</Link>
                 <div className='btn-background-film'>
                     {addBtn ?
                         <button onClick={() => {
